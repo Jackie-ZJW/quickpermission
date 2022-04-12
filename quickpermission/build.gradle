@@ -32,16 +32,18 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath 'com.vanniktech:gradle-maven-publish-plugin:0.17.0'
+        //classpath 'com.vanniktech:gradle-maven-publish-plugin:0.17.0'
     }
 }
 
-allprojects {
+/*allprojects {
     plugins.withId("com.vanniktech.maven.publish") {
         mavenPublish {
             sonatypeHost = "S01"
         }
     }
-}
+}*/
 
-apply plugin: "com.vanniktech.maven.publish"
+//apply plugin: "com.vanniktech.maven.publish"
+
+apply from: '../publish_aar.gradle'
