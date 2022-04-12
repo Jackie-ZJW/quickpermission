@@ -6,8 +6,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.permissionx.app.databinding.ActivityMainJavaBinding;
-import com.permissionx.guolindev.PermissionX;
+import com.zjwdev.quickpermission.PermissionX;
+import com.zjwdev.quickpermissiontest.databinding.ActivityMainJavaBinding;
+
 
 public class MainJavaActivity extends AppCompatActivity {
 

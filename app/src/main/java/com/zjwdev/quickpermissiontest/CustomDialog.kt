@@ -5,8 +5,9 @@ import android.annotation.TargetApi
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import com.zjwdev.quickpermission.R
 import com.zjwdev.quickpermission.dialog.RationaleDialog
+import com.zjwdev.quickpermissiontest.databinding.CustomDialogLayoutBinding
+import com.zjwdev.quickpermissiontest.databinding.PermissionsItemBinding
 
 @TargetApi(30)
 class CustomDialog(context: Context, private val message: String, private val permissions: List<String>) : RationaleDialog(context, R.style.CustomDialog) {

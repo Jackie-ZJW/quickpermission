@@ -1,4 +1,4 @@
-package com.permissionx.app
+package com.zjwdev.quickpermissiontest
 
 import android.Manifest
 import android.annotation.TargetApi
@@ -8,10 +8,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import com.permissionx.app.databinding.CustomDialogLayoutBinding
-import com.permissionx.app.databinding.PermissionsItemBinding
-import com.permissionx.guolindev.dialog.RationaleDialogFragment
+import com.zjwdev.quickpermission.dialog.RationaleDialogFragment
+import com.zjwdev.quickpermissiontest.databinding.CustomDialogLayoutBinding
+import com.zjwdev.quickpermissiontest.databinding.PermissionsItemBinding
 
 @TargetApi(30)
 class CustomDialogFragment() : RationaleDialogFragment() {
