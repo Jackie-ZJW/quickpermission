@@ -3,6 +3,8 @@
 #### Description
 这是一个Android库，用于使Android运行时权限申请变得更简单快捷。其改自郭霖的PermissionX库，fork自其master分支2021.12.24日的提交：8632bf6de971cbd980127ad9a58f6f4f9c83b393。
 
+
+
 #### Software Architecture
 Software architecture description
 
