@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.permissionx.guolindev
+package com.zjwdev.quickpermission
 
 import android.os.Build
 import androidx.fragment.app.Fragment

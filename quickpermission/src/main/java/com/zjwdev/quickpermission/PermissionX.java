@@ -23,8 +23,6 @@ import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 
-import com.permissionx.guolindev.PermissionMediator;
-
 /**
  * An open source Android library that makes handling runtime permissions extremely easy.
  * <p>
