@@ -1,4 +1,4 @@
-package com.permissionx.app
+package com.zjwdev.quickpermissiontest
 
 import android.Manifest
 import android.graphics.Color
@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import com.zjwdev.quickpermission.QuickPermission
-import com.zjwdev.quickpermissiontest.CustomDialogFragment
 import com.zjwdev.quickpermissiontest.databinding.FragmentMainBinding
 
 class MainFragment : Fragment() {

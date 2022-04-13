@@ -33,7 +33,7 @@ task androidSourcesJar(type: Jar) {
 ext {
     PUBLISH_GROUP_ID = 'io.github.jackie-zjw'
     PUBLISH_ARTIFACT_ID = 'quickpermission'
-    PUBLISH_VERSION = '1.0.0'
+    PUBLISH_VERSION = '1.0.1'
 }
 
 ext["signing.keyId"] = ''
