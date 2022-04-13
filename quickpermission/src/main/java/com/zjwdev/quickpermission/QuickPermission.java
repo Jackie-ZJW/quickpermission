@@ -1,5 +1,5 @@
 /*
- * Copyright (C)  guolin, PermissionX Open Source Project
+ * Copyright (C)  Jackie-ZJW, QuickPermission Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -28,20 +28,20 @@ import androidx.fragment.app.FragmentActivity;
  * <p>
  * The following snippet shows the simple usage:
  * <pre>
- *   PermissionX.init(activity)
+ *   QuickPermission.init(activity)
  *      .permissions(Manifest.permission.READ_CONTACTS, Manifest.permission.CAMERA)
  *      .request { allGranted, grantedList, deniedList ->
  *          // handling the logic
  *      }
  * </pre>
  *
- * @author guolin
- * @since 2019/11/2
+ * @author Jackie-ZJW
+ * @since 2022/04/12
  */
-public class PermissionX {
+public class QuickPermission {
     
     /**
-     * Init PermissionX to make everything prepare to work.
+     * Init QuickPermission to make everything prepare to work.
      *
      * @param activity An instance of FragmentActivity
      * @return PermissionCollection instance.
@@ -51,7 +51,7 @@ public class PermissionX {
     }
     
     /**
-     * Init PermissionX to make everything prepare to work.
+     * Init QuickPermission to make everything prepare to work.
      *
      * @param fragment An instance of Fragment
      * @return PermissionCollection instance.

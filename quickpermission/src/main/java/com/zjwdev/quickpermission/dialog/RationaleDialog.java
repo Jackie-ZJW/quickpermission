@@ -1,5 +1,5 @@
 /*
- * Copyright (C)  guolin, PermissionX Open Source Project
+ * Copyright (C)  Jackie-ZJW, QuickPermission Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import java.util.List;
  * Your dialog must have a positive button to proceed request and an optional negative button to cancel request. Override
  * {@link RationaleDialog#getPositiveButton()} and {@link RationaleDialog#getNegativeButton()} to implement that.
  *
- * @author guolin
+ * @author Jackie-ZJW
  * @since 2020/7/6
  */
 public abstract class RationaleDialog extends Dialog {

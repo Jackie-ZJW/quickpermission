@@ -1,5 +1,5 @@
 /*
- * Copyright (C)  guolin, PermissionX Open Source Project
+ * Copyright (C)  Jackie-ZJW, QuickPermission Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -24,15 +24,15 @@ import android.provider.Settings
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
-import com.zjwdev.quickpermission.PermissionX
+import com.zjwdev.quickpermission.QuickPermission
 import java.util.*
 
 /**
  * An invisible fragment to embedded into activity for handling permission requests.
  * This is very lightweight. Will not affect your app's efficiency.
  *
- * @author guolin
- * @since 2019/11/2
+ * @author Jackie-ZJW
+ * @since 2022/04/12
  */
 class InvisibleFragment : Fragment() {
     /**
@@ -273,7 +273,7 @@ class InvisibleFragment : Fragment() {
             deniedPermissions.addAll(pb.permanentDeniedPermissions)
             // maybe user can turn some permissions on in settings that we didn't request, so check the denied permissions again for safety.
             for (permission in deniedPermissions) {
-                if (PermissionX.isGranted(context, permission)) {
+                if (QuickPermission.isGranted(context, permission)) {
                     pb.deniedPermissions.remove(permission)
                     pb.grantedPermissions.add(permission)
                 }
@@ -496,7 +496,7 @@ class InvisibleFragment : Fragment() {
     private fun checkForGC(): Boolean {
         if (!::pb.isInitialized || !::task.isInitialized) {
             Log.w(
-                "PermissionX",
+                "QuickPermission",
                 "PermissionBuilder and ChainTask should not be null at this time, so we can do nothing in this case."
             )
             return false

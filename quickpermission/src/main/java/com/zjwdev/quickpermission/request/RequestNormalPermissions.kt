@@ -1,5 +1,5 @@
 /*
- * Copyright (C)  guolin, PermissionX Open Source Project
+ * Copyright (C)  Jackie-ZJW, QuickPermission Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,12 +15,12 @@
  */
 package com.zjwdev.quickpermission.request
 
-import com.zjwdev.quickpermission.PermissionX
+import com.zjwdev.quickpermission.QuickPermission
 import java.util.*
 
 /**
  * Implementation for request normal permissions.
- * @author guolin
+ * @author Jackie-ZJW
  * @since 2020/6/10
  */
 internal class RequestNormalPermissions internal constructor(permissionBuilder: PermissionBuilder) :
@@ -29,7 +29,7 @@ internal class RequestNormalPermissions internal constructor(permissionBuilder: 
     override fun request() {
         val requestList = ArrayList<String>()
         for (permission in pb.normalPermissions) {
-            if (PermissionX.isGranted(pb.activity, permission)) {
+            if (QuickPermission.isGranted(pb.activity, permission)) {
                 pb.grantedPermissions.add(permission) // already granted
             } else {
                 requestList.add(permission) // still need to request

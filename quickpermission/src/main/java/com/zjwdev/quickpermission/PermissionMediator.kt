@@ -1,5 +1,5 @@
 /*
- * Copyright (C) guolin, PermissionX Open Source Project
+ * Copyright (C) Jackie-ZJW, QuickPermission Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,8 +26,8 @@ import com.zjwdev.quickpermission.request.RequestBackgroundLocationPermission
 /**
  * An internal class to provide specific scope for passing permissions param.
  *
- * @author guolin
- * @since 2019/11/2
+ * @author Jackie-ZJW
+ * @since 2022/04/12
  */
 class PermissionMediator {
 

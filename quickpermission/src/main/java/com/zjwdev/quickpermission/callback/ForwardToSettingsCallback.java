@@ -1,5 +1,5 @@
 /*
- * Copyright (C)  guolin, PermissionX Open Source Project
+ * Copyright (C)  Jackie-ZJW, QuickPermission Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -26,7 +26,7 @@ import java.util.List;
 /**
  * Callback for {@link PermissionBuilder#onForwardToSettings(ForwardToSettingsCallback)} method.
  *
- * @author guolin
+ * @author Jackie-ZJW
  * @since 2020/6/7
  */
 public interface ForwardToSettingsCallback {

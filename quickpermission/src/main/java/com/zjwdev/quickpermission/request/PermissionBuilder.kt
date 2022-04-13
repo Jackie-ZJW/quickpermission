@@ -1,5 +1,5 @@
 /*
- * Copyright (C)  guolin, PermissionX Open Source Project
+ * Copyright (C)  Jackie-ZJW, QuickPermission Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -35,10 +35,10 @@ import com.zjwdev.quickpermission.dialog.RationaleDialogFragment
 import java.util.*
 
 /**
- * More APIs for developers to control PermissionX functions.
+ * More APIs for developers to control QuickPermission functions.
  *
- * @author guolin
- * @since 2019/11/17
+ * @author Jackie-ZJW
+ * @since 2022/04/12
  */
 class PermissionBuilder(
     fragmentActivity: FragmentActivity?,
@@ -94,7 +94,7 @@ class PermissionBuilder(
     var specialPermissions: MutableSet<String>
 
     /**
-     * Indicates should PermissionX explain request reason before request.
+     * Indicates should QuickPermission explain request reason before request.
      */
     @JvmField
     var explainReasonBeforeRequest = false
@@ -102,7 +102,7 @@ class PermissionBuilder(
     /**
      * Indicates [ExplainScope.showRequestReasonDialog] or [ForwardScope.showForwardToSettingsDialog]
      * is called in [.onExplainRequestReason] or [.onForwardToSettings] callback.
-     * If not called, requestCallback will be called by PermissionX automatically.
+     * If not called, requestCallback will be called by QuickPermission automatically.
      */
     @JvmField
     var showDialogCalled = false

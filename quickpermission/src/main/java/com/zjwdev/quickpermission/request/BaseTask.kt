@@ -1,5 +1,5 @@
 /*
- * Copyright (C)  guolin, PermissionX Open Source Project
+ * Copyright (C)  Jackie-ZJW, QuickPermission Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,13 +19,13 @@ import android.Manifest
 import android.os.Build
 import android.os.Environment
 import android.provider.Settings
-import com.zjwdev.quickpermission.PermissionX
+import com.zjwdev.quickpermission.QuickPermission
 import java.util.*
 
 /**
  * Define a BaseTask to implement the duplicate logic codes. No need to implement them in every task.
  *
- * @author guolin
+ * @author Jackie-ZJW
  * @since 2020/6/10
  */
 internal abstract class BaseTask(@JvmField var pb: PermissionBuilder) : ChainTask {
@@ -58,7 +58,7 @@ internal abstract class BaseTask(@JvmField var pb: PermissionBuilder) : ChainTas
             deniedList.addAll(pb.permanentDeniedPermissions)
             deniedList.addAll(pb.permissionsWontRequest)
             if (pb.shouldRequestBackgroundLocationPermission()) {
-                if (PermissionX.isGranted(
+                if (QuickPermission.isGranted(
                         pb.activity,
                         RequestBackgroundLocationPermission.ACCESS_BACKGROUND_LOCATION
                     )

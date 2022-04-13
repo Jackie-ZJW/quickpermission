@@ -1,5 +1,5 @@
 /*
- * Copyright (C) guolin, PermissionX Open Source Project
+ * Copyright (C) Jackie-ZJW, QuickPermission Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import android.os.Environment
 /**
  * Implementation for request android.permission.MANAGE_EXTERNAL_STORAGE.
  *
- * @author guolin
+ * @author Jackie-ZJW
  * @since 2021/3/1
  */
 internal class RequestManageExternalStoragePermission internal constructor(permissionBuilder: PermissionBuilder) :

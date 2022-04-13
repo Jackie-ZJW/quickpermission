@@ -1,5 +1,5 @@
 /*
- * Copyright (C)  guolin, PermissionX Open Source Project
+ * Copyright (C)  Jackie-ZJW, QuickPermission Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,11 +17,11 @@ package com.zjwdev.quickpermission.request
 
 import android.Manifest
 import android.os.Build
-import com.zjwdev.quickpermission.PermissionX
+import com.zjwdev.quickpermission.QuickPermission
 
 /**
  * Implementation for request ACCESS_BACKGROUND_LOCATION permission.
- * @author guolin
+ * @author Jackie-ZJW
  * @since 2020/6/10
  */
 internal class RequestBackgroundLocationPermission internal constructor(permissionBuilder: PermissionBuilder) :
@@ -35,15 +35,15 @@ internal class RequestBackgroundLocationPermission internal constructor(permissi
                 pb.specialPermissions.remove(ACCESS_BACKGROUND_LOCATION)
                 pb.permissionsWontRequest.add(ACCESS_BACKGROUND_LOCATION)
             }
-            if (PermissionX.isGranted(pb.activity, ACCESS_BACKGROUND_LOCATION)) {
+            if (QuickPermission.isGranted(pb.activity, ACCESS_BACKGROUND_LOCATION)) {
                 // ACCESS_BACKGROUND_LOCATION has already granted, we can finish this task now.
                 finish()
                 return
             }
             val accessFindLocationGranted =
-                PermissionX.isGranted(pb.activity, Manifest.permission.ACCESS_FINE_LOCATION)
+                QuickPermission.isGranted(pb.activity, Manifest.permission.ACCESS_FINE_LOCATION)
             val accessCoarseLocationGranted =
-                PermissionX.isGranted(pb.activity, Manifest.permission.ACCESS_COARSE_LOCATION)
+                QuickPermission.isGranted(pb.activity, Manifest.permission.ACCESS_COARSE_LOCATION)
             if (accessFindLocationGranted || accessCoarseLocationGranted) {
                 if (pb.explainReasonCallback != null || pb.explainReasonCallbackWithBeforeParam != null) {
                     val requestList = mutableListOf(ACCESS_BACKGROUND_LOCATION)

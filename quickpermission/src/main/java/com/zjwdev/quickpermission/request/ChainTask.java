@@ -1,5 +1,5 @@
 /*
- * Copyright (C)  guolin, PermissionX Open Source Project
+ * Copyright (C)  Jackie-ZJW, QuickPermission Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,7 +23,7 @@ import java.util.List;
  * Not all permissions can be requested at one time. Some permissions need to request separately.
  * So each permission request need to implement this interface, and do the request logic in their implementations.
  *
- * @author guolin
+ * @author Jackie-ZJW
  * @since 2020/6/10
  */
 public interface ChainTask {

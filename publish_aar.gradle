@@ -2,7 +2,7 @@ apply plugin: 'maven-publish'
 apply plugin: 'signing'
 
 task androidSourcesJar(type: Jar) {
-    classifier = 'sources'
+    archiveClassifier = 'sources' //classifier已过时
     from android.sourceSets.main.java.source
 
     exclude "**/R.class"
@@ -53,8 +53,43 @@ if (secretPropsFile.exists()) {
 } else {
     println "No props file, loading env vars"
 }
+
+//publishing{}块用于配置如何发布项目的不同组件，其由PublishingExtension类支持。publishing{}块中只能添加repositories{}和publications{}两个属性块。
+//PublishingExtension类的参考文档地址：https://docs.gradle.org/current/dsl/org.gradle.api.publish.PublishingExtension.html
 publishing {
-    publications {
+
+    //repositories{}块用于配置需要发布到哪些仓库，其由RepositoryHandler类支持。
+    //此处的repositories{}块与声明依赖库来源仓库的repositories{}块是一样的DSL. 但是,RepositoryHandler可以创建的某些类型的repository对于发布是无效的，比如RepositoryHandler.mavenCentral()对于发布就无效，只有通过ivy()工厂方法创建的发布才是有效的。
+    //RepositoryHandler类的参考文档地址：https://docs.gradle.org/current/dsl/org.gradle.api.artifacts.dsl.RepositoryHandler.html
+    repositories { RepositoryHandler handler ->
+        //发布到本地maven仓库, 该仓库名称为MavenLocal，默认路径为：USER_HOME/.m2/repository/，但一般会自定义为其它路径。具体路径查看maven的配置文件/conf/settings.xml中的配置。
+        handler.mavenLocal()
+
+        //添加并配置一个Maven仓库。新创建的一个MavenArtifactRepository实例将作为参数传入该闭包(closure)。
+        handler.maven {
+            //给添加的Maven仓库取一个自定义的名字，该名字可以任意定义，但要求不能与repositories{}块中添加的其它仓库同名。
+            //对于Maven或Ivy仓库可以不显式指定name，Maven插件会指定默认名称分别为Maven和Ivy，但除这两种类型的仓库之外其它所有添加的仓库都必须显式指定name。
+            name = "mavenCentral"
+
+            def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
+            def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
+
+            //设置当前仓库的基础URL，该URL用于查找POMs和工件文件。
+            //这里根据版本类型来动态设置仓库的基础URL。
+            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+
+            //设置当前仓库的凭据，对于Maven中央仓库来说，凭据就是自己注册Sonatype网站时设置的用户名与密码。如果当前仓库无凭据则无需设置该属性。
+            credentials {
+                username ossrhUsername
+                password ossrhPassword
+            }
+        }
+    }
+
+    //publications{}用于配置项目的发布产品。
+    //该配置块中具体的发布类型由应用的发布插件类型来决定，比如maven-publish插件将提供MavenPublication发布类型，ivy-publish插件将提供IvyPublication发布类型。
+    publications { PublicationContainer publicationContainer ->
+        //添加一个名为release(该名称可以随便自定义)的MavenPublication类型的发布配置块，用于发布正式版。
         release(MavenPublication) {
             // The coordinates of the library, being set from variables that
             // we'll set up in a moment
@@ -62,18 +97,21 @@ publishing {
             artifactId PUBLISH_ARTIFACT_ID
             version PUBLISH_VERSION
 
-            // Two artifacts, the `aar` and the sources
+            //指定编译生成的正式版aar包工件。
             artifact("$buildDir/outputs/aar/${project.getName()}-release.aar")
+            //指定项目源码工件，如果不想一起公布源代码则注释掉该工件配置。
             artifact androidSourcesJar
-            //ZJW add
+            //指定javadoc文档工件，目前该工件任务的配置还不清楚如何进行，因为这是一个Kotlin项目，不知与Java项目的配置是否有区别。
             //artifact javadocJar
 
-            // Self-explanatory metadata for the most part
-            pom {
+            //配置将被发布的POM(项目对象模型)，这些配置信息都将被配置到发布后的项目的pom文件中。
+            //MavenPom官方参考文档地址：https://docs.gradle.org/current/dsl/org.gradle.api.publish.maven.MavenPom.html
+            pom { MavenPom mavenPom->
                 name = PUBLISH_ARTIFACT_ID
                 description = 'An open source Android library that makes handling runtime permissions easier and quicker.'
                 // If your project has a dedicated site, use its URL here
                 url = 'https://github.com/Jackie-ZJW/quickpermission'
+                //配置项目的证书信息。
                 licenses {
                     license {
                         //协议类型，一般默认Apache License2.0的话不用改：
@@ -81,6 +119,7 @@ publishing {
                         url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
                     }
                 }
+                //配置项目开发者相关信息
                 developers {
                     developer {
                         id = 'Jackie-ZJW'
@@ -88,16 +127,15 @@ publishing {
                         email = '1192935956@qq.com'
                     }
                 }
-                // Version control info, if you're using GitHub, follow the format as seen here
+                //配置源代码版本控制管理信息，比如项目的git配置相关信息。
                 scm {
-                    //修改成你的Git地址：
+                    //修改成你项目源代码的github等地址：
                     connection = 'scm:git:github.com/Jackie-ZJW/quickpermission.git'
                     developerConnection = 'scm:git:ssh://github.com/Jackie-ZJW/quickpermission.git'
                     //分支地址：
                     url = 'https://github.com/Jackie-ZJW/quickpermission/tree/master'
                 }
-                // A slightly hacky fix so that your POM will include any transitive dependencies
-                // that your library builds upon
+                //在项目POM中配置所有的传递性依赖，maven-publish插件默认发布POM中是不包含传递性依赖的，需要通过如下设置添加所有传递性依赖。
                 withXml {
                     def dependenciesNode = asNode().appendNode('dependencies')
 
@@ -111,27 +149,12 @@ publishing {
             }
         }
     }
-    repositories {
-        // The repository to publish to, Sonatype/MavenCentral
-        maven {
-            // This is an arbitrary name, you may also use "mavencentral" or
-            // any other name that's descriptive for you
-            name = "mavenCentral"
 
-            def releasesRepoUrl = "https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/"
-            def snapshotsRepoUrl = "https://s01.oss.sonatype.org/content/repositories/snapshots/"
-            // You only need this if you want to publish snapshots, otherwise just set the URL
-            // to the release repo directly
-            url = version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
-
-            // The username and password we've fetched earlier
-            credentials {
-                username ossrhUsername
-                password ossrhPassword
-            }
-        }
-    }
 }
+
+//利用signing插件对组成发布产品的所有工件(包括POM文件)进行签名。signing{}块会为我们指定的每一个发布产品创建一个Sign任务，并且将所有的publishPubNamePublicationToRepoNameRepository任务
+//都依赖于该签名task上，发布任何一个产品时将会自动为所有工件创建和发布签名。
+//执行此签名任务必须提供：signing.keyId, signing.secretKeyRingFile和signing.password这三个属性值，这三个属性值建议保存到gradle.properties，且不要上传到版本控制系统中。
 signing {
     sign publishing.publications
 }

@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.zjwdev.quickpermission.PermissionX;
+import com.zjwdev.quickpermission.QuickPermission;
 import com.zjwdev.quickpermissiontest.databinding.ActivityMainJavaBinding;
 
 
@@ -17,13 +17,13 @@ public class MainJavaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         ActivityMainJavaBinding binding = ActivityMainJavaBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        binding.makeRequestBtn.setOnClickListener(view -> PermissionX.init(MainJavaActivity.this)
+        binding.makeRequestBtn.setOnClickListener(view -> QuickPermission.init(MainJavaActivity.this)
                 .permissions(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .explainReasonBeforeRequest()
                 .onExplainRequestReason((scope, deniedList, beforeRequest) -> {
-//                    CustomDialog customDialog = new CustomDialog(MainJavaActivity.this, "PermissionX needs following permissions to continue", deniedList);
+//                    CustomDialog customDialog = new CustomDialog(MainJavaActivity.this, "QuickPermission needs following permissions to continue", deniedList);
 //                    scope.showRequestReasonDialog(customDialog);
-                    scope.showRequestReasonDialog(deniedList, "PermissionX needs following permissions to continue", "Allow");
+                    scope.showRequestReasonDialog(deniedList, "QuickPermission needs following permissions to continue", "Allow");
                 })
                 .onForwardToSettings((scope, deniedList) -> {
                     scope.showForwardToSettingsDialog(deniedList, "Please allow following permissions in settings", "Allow");

@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import com.zjwdev.quickpermission.PermissionX
+import com.zjwdev.quickpermission.QuickPermission
 import com.zjwdev.quickpermissiontest.CustomDialogFragment
 import com.zjwdev.quickpermissiontest.databinding.FragmentMainBinding
 
@@ -27,7 +27,7 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 //        val context = context!!
         binding.makeRequestBtn.setOnClickListener {
-            PermissionX.init(this)
+            QuickPermission.init(this)
                 .permissions(
                 Manifest.permission.CAMERA,
                     Manifest.permission.ACCESS_FINE_LOCATION,
@@ -43,7 +43,7 @@ class MainFragment : Fragment() {
                 )
                 .setDialogTintColor(Color.parseColor("#1972e8"), Color.parseColor("#8ab6f5"))
                 .onExplainRequestReason { scope, deniedList, beforeRequest ->
-                    val message = "PermissionX needs following permissions to continue"
+                    val message = "QuickPermission needs following permissions to continue"
                     scope.showRequestReasonDialog(deniedList, message, "Allow", "Deny")
 //                    val message = "Please allow the following permissions in settings"
 //                    val dialog = CustomDialogFragment(message, deniedList)

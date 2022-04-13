@@ -1,5 +1,5 @@
 /*
- * Copyright (C)  guolin, PermissionX Open Source Project
+ * Copyright (C)  Jackie-ZJW, QuickPermission Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ import java.util.List;
  * Your DialogFragment must have a positive button to proceed request and an optional negative button to cancel request. Override
  * {@link RationaleDialogFragment#getPositiveButton()} and {@link RationaleDialogFragment#getNegativeButton()} to implement that.
  *
- * @author guolin
+ * @author Jackie-ZJW
  * @since 2020/9/1
  */
 public abstract class RationaleDialogFragment extends DialogFragment {

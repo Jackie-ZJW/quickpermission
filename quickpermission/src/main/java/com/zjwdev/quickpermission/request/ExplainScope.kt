@@ -1,5 +1,5 @@
 /*
- * Copyright (C)  guolin, PermissionX Open Source Project
+ * Copyright (C)  Jackie-ZJW, QuickPermission Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -21,7 +21,7 @@ import com.zjwdev.quickpermission.dialog.RationaleDialogFragment
 /**
  * Provide specific scopes for [com.permissionx.guolindev.callback.ExplainReasonCallback]
  * and [com.permissionx.guolindev.callback.ExplainReasonCallbackWithBeforeParam] to give it specific functions to call.
- * @author guolin
+ * @author Jackie-ZJW
  * @since 2020/3/18
  */
 class ExplainScope internal constructor(
@@ -35,9 +35,9 @@ class ExplainScope internal constructor(
      * @param message
      * Message that show to user.
      * @param positiveText
-     * Text on the positive button. When user click, PermissionX will request permissions again.
+     * Text on the positive button. When user click, QuickPermission will request permissions again.
      * @param negativeText
-     * Text on the negative button. When user click, PermissionX will finish request.
+     * Text on the negative button. When user click, QuickPermission will finish request.
      */
     @JvmOverloads
     fun showRequestReasonDialog(
